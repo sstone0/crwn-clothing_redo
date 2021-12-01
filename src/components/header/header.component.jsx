@@ -21,7 +21,7 @@ import "./header.styles.scss";
 
 const Header = ({ currentUser, hidden }) => (
   <HeaderContainer>
-    <LogoContainer to="/">
+    <LogoContainer to="/crwn-clothing_redo/">
       <Logo className="logo" />
     </LogoContainer>
     <OptionsContainer>
