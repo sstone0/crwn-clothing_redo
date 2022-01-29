@@ -23,12 +23,16 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
+        userRef.onSnapshot(
+          (snapShot) => {
+            setCurrentUser({
+              id: snapShot.id,
+              ...snapShot.data(),
+            });
+          },
+          (error) =>
+            console.log(`There was an error logging in + error. ${error}`)
+        );
       }
 
       setCurrentUser(userAuth);
@@ -44,19 +48,19 @@ class App extends React.Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/crwn-clothing_redo/" component={HomePage} />
-          <Route path="/crwn-clothing_redo/shop" component={ShopPage} />
+          <Route exact path='/crwn-clothing_redo/' component={HomePage} />
+          <Route path='/crwn-clothing_redo/shop' component={ShopPage} />
           <Route
             excact
-            path="/crwn-clothing_redo/checkout"
+            path='/crwn-clothing_redo/checkout'
             component={CheckoutPage}
           />
           <Route
             exact
-            path="/crwn-clothing_redo/signin"
+            path='/crwn-clothing_redo/signin'
             render={() =>
               this.props.currentUser ? (
-                <Redirect to="/crwn-clothing_redo/" />
+                <Redirect to='/crwn-clothing_redo/' />
               ) : (
                 <SignInAndSignUpPage />
               )
