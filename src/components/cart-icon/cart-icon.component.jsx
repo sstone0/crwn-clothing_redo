@@ -1,25 +1,28 @@
-import React from 'react';
+import React from "react";
 
-import { toggleCartHidden } from '../../redux/cart/cart.actions';
-import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
+import {
+  CartContainer,
+  ShoppingIcon,
+  ItemCountContainer,
+} from "./cart-icon.styles.jsx";
 
-import './cart-icon.styles.scss';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CartIcon = () => {
-	const dispatch = useDispatch();
-	const toggleCartHiddenClickHandler = () => dispatch(toggleCartHidden());
-	const itemCount = useSelector(selectCartItemsCount);
+  const dispatch = useDispatch();
+  const toggleCartHiddenClickHandler = () => dispatch(toggleCartHidden());
+  const itemCount = useSelector(selectCartItemsCount);
 
-	return (
-		<div className="cart-icon" onClick={toggleCartHiddenClickHandler}>
-			<ShoppingIcon className="shopping-icon" />
-			<span className="item-count">{itemCount}</span>
-		</div>
-	);
+  return (
+    <CartContainer onClick={toggleCartHiddenClickHandler}>
+      <ShoppingIcon />
+      <ItemCountContainer>{itemCount}</ItemCountContainer>
+    </CartContainer>
+  );
 };
 
 export default CartIcon;
